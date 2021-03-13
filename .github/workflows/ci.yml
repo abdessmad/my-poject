@@ -12,7 +12,10 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
+    
+      
+      
 
     steps:
     - uses: actions/checkout@v2
@@ -24,3 +27,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: build and push docker image
+      run: |
+         docker login -u=abdessmad -p=yaallah94
+         docker build -t java-app .
+         docker tag java-app demo-app:java-1.0
