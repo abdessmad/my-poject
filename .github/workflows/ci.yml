@@ -27,9 +27,13 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: build and push docker image
-      run: |
-         docker login -u=abdessmad -p=yaallah94
-         docker build -t java-app .
-         docker tag java-app demo-app:java-1.0
-         docker push abdessmad/dockerfolder:java-1.0
+    - uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: abdessmad/dockerfolder
+        registry: docker.io
+        username: abdessmad
+        password: yaallah94  
+    
+         
+         
+    
